@@ -118,8 +118,8 @@ def create_image(entry):
     draw_centered_text(draw, song_text, font_song, "white", song_box, max_width=26)
     
     # Save the image
-    filename = f"cards/{entry['song'].replace("/", "_").replace(' ', '_')}.png"
-    img.save(filename)
+    filename = f"{entry['song']} [{entry['artists']}] [{entry['year']}].png".replace("/", "_")
+    img.save(os.path.join("cards", filename))
     print(f"Image saved as {filename}")
 
 # Generate images for all entries
