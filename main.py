@@ -64,6 +64,13 @@ def get_blurred_background(url, width, height):
     return img
 
 def create_image(entry):
+    filename = f"{entry['song']} [{entry['artists']}] [{entry['year']}].png".replace("/", "_")
+    filepath = os.path.join("cards", filename)
+    
+    if os.path.exists(filepath):
+        print(f"Image exists as {filepath}")
+        return
+    
     # Image dimensions
     img_width, img_height = 800, 400  # Rectangular image, square card
     
@@ -118,9 +125,8 @@ def create_image(entry):
     draw_centered_text(draw, song_text, font_song, "white", song_box, max_width=26)
     
     # Save the image
-    filename = f"{entry['song']} [{entry['artists']}] [{entry['year']}].png".replace("/", "_")
-    img.save(os.path.join("cards", filename))
-    print(f"Image saved as {filename}")
+    img.save(filepath)
+    print(f"Image saved as {filepath}")
 
 # Generate images for all entries
 import os
