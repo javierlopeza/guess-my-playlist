@@ -4,11 +4,16 @@ import re
 import textwrap
 import requests
 from io import BytesIO
+from dotenv import load_dotenv
+import os
 
+# Load environment variables from the .env file
+load_dotenv()
 
-# Replace with your Spotify Developer credentials
-CLIENT_ID = '<CLIENT_ID>'
-CLIENT_SECRET = '<CLIENT_SECRET>'
+# Access the variables
+CLIENT_ID = os.getenv('CLIENT_ID')
+CLIENT_SECRET = os.getenv('CLIENT_SECRET')
+
 sp = spotipy.Spotify(
     auth_manager=SpotifyClientCredentials(
         client_id=CLIENT_ID,
